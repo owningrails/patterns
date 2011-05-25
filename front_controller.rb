@@ -12,7 +12,9 @@ class FrontController
     controller = controller_class.new
     controller.request = request
     controller.response = response
-    controller.send(action_name)
+    controller.filter do
+      controller.send(action_name)
+    end
     
     response.finish
   end
