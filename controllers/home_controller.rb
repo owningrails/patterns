@@ -5,11 +5,12 @@ class HomeController < Controller
   after_filter :footer
   
   def index
-    response.write "Hello from Home controller"
+    @message = "This class is awesome!"
+    render :index
   end
   
   def nice
-    response.write "Hi, this is nice!"
+    render :text => "Hi, this is nice!"
   end
   
   def header
