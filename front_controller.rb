@@ -1,4 +1,5 @@
 require "controller"
+require "active_record"
 
 class FrontController
   def call(env)
