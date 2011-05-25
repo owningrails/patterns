@@ -8,10 +8,11 @@ class Controller
   def render(options)
     case options
     when String, Symbol
-      out = render_to_string(template)
+      out = render_to_string(options) # <= oops
     when Hash
       out = options[:text]
     end
+    @rendered = true
     response.write out
   end
   
@@ -26,5 +27,9 @@ class Controller
   
   def controller_name
     self.class.name[/^(\w+)Controller$/, 1].downcase
+  end
+  
+  def rendered?
+    @rendered
   end
 end
