@@ -4,7 +4,8 @@ class HomeController < Controller
   after_filter :footer
   
   def index
-    response.write "Hello from home controller!"
+    @message = "This is cool!"
+    render :index
   end
   
   def nice
