@@ -7,7 +7,12 @@ class Controller
   include Filters
   
   def render(action)
+    @rendered = true
     response.write render_to_string(action)
+  end
+  
+  def rendered?
+    @rendered
   end
   
   def render_to_string(action)

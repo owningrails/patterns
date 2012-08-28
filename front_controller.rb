@@ -18,6 +18,7 @@ class FrontController
     
     controller.filter do
       controller.send(action_name)
+      controller.render(action_name) unless controller.rendered?
     end
     
     response.finish
