@@ -1,7 +1,17 @@
-class App
+$:.unshift "."
+require "front_controller"
+
+class Logger
+  def initialize(app)
+    @app = app
+  end
+  
   def call(env)
-    # Return the response array here
+    puts "Calling " + env["PATH_INFO"]
+    @app.call(env)
   end
 end
 
-run App.new
+use Logger
+
+run FrontController.new
