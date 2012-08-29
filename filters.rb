@@ -3,34 +3,42 @@ require "active_support/all"
 module Filters
   def self.included(base)
     base.extend ClassMethods
-    base.class_attribute :before_filters
-    base.before_filters = []
-    base.class_attribute :after_filters
-    base.after_filters = []
-    base.class_attribute :around_filters
-    base.around_filters = []
   end
   
   module ClassMethods
     def before_filter(method)
-      self.before_filters += [method]
+      before_filters << method
     end
+    
+    def before_filters
+      @before_filters ||= []
+    end
+    
     def after_filter(method)
-      self.after_filters += [method]
+      after_filters << method
     end
+    
+    def after_filters
+      @after_filters ||= []
+    end
+    
     def around_filter(method)
-      self.around_filters += [method]
+      around_filters << method
+    end
+    
+    def around_filters
+      @around_filters ||= []
     end
   end
   
   def filter
     process_proc = proc do
-      before_filters.each { |method| send(method) }
+      self.class.before_filters.each { |method| send(method) }
       yield
-      after_filters.each { |method| send(method) }
+      self.class.after_filters.each { |method| send(method) }
     end
     
-    around_filters.reverse.each do |method|
+    self.class.around_filters.reverse.each do |method|
       previous_proc = process_proc
       process_proc = proc { send(method, &previous_proc) }
     end

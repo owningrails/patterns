@@ -37,9 +37,14 @@ class TestController < Controller
   end
 end
 
+class TestController2 < Controller
+  before_filter :four
+end
+
 class FiltersTest < Test::Unit::TestCase
   def test_store_filters
     assert_equal [:one, :two], TestController.before_filters
+    assert_equal [:four], TestController2.before_filters
     assert_equal [:three], TestController.after_filters
   end
   
