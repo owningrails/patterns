@@ -35,6 +35,12 @@ class TestController < Controller
     yield
     @out << "]"
   end
+  
+  def index
+    @out << :index
+    
+    @rendered = true # to skip rendering
+  end
 end
 
 class TestController2 < Controller
@@ -50,9 +56,7 @@ class FiltersTest < Test::Unit::TestCase
   
   def test_filtering
     out = []
-    TestController.new(out).filter do
-      out << :process
-    end
-    assert_equal ["{", "[", :one, :two, :process, :three, "]", "}"], out
+    TestController.new(out).process(:index)
+    assert_equal ["{", "[", :one, :two, :index, :three, "]", "}"], out
   end
 end

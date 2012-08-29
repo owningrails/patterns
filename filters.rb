@@ -31,10 +31,10 @@ module Filters
     end
   end
   
-  def filter
+  def process(*)
     process_proc = proc do
       self.class.before_filters.each { |method| send(method) }
-      yield
+      super
       self.class.after_filters.each { |method| send(method) }
     end
     

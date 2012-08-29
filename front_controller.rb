@@ -15,11 +15,7 @@ class FrontController
     controller = controller_class.new
     controller.request = request
     controller.response = response
-    
-    controller.filter do
-      controller.send(action_name)
-      controller.render(action_name) unless controller.rendered?
-    end
+    controller.process(action_name)
     
     response.finish
   end
