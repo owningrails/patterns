@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/test_helper'
 require "controller"
 require "controllers/home_controller"
 
-class ControllerTest < Test::Unit::TestCase
+class RenderingTest < Test::Unit::TestCase
   def setup
     @controller = HomeController.new
   end

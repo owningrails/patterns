@@ -1,16 +1,15 @@
-require "active_record"
+require "not_active_record"
 require "filters"
 require "rendering"
 
-# TODO namespace everything to make work inside Rails?
-class AbstractController
+class ControllerBase
+  attr_accessor :request, :response
+  
   def process(action)
     send(action)
   end
 end
 
-class Controller < AbstractController
-  attr_accessor :request, :response
-  
+class Controller < ControllerBase
   include Filters, Rendering
-end
+end  

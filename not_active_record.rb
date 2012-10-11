@@ -1,6 +1,6 @@
 require "connection_adapter"
 
-module ActiveRecord
+module NotActiveRecord
   class Base
     @@connection = SqliteAdapter.new
 
