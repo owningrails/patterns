@@ -3,8 +3,25 @@
 
 class App
   def call(env)
-    # Return the response array here
+    [
+      200,
+      { "Content-Type" => "text/plain" },
+      [env["PATH_INFO"]]
+    ]
   end
 end
+
+class Logger
+  def initialize(app)
+    @app = app
+  end
+
+  def call(env)
+    puts "Calling " + env["PATH_INFO"]
+    @app.call(env)
+  end
+end
+
+use Logger
 
 run App.new
