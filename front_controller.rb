@@ -1,4 +1,6 @@
 require "controller"
+require "router"
+require "routes"
 
 class FrontController
   def call(env)
@@ -17,9 +19,7 @@ class FrontController
   end
 
   def route(path)
-    # /home/index => ["", "home", "index"]
-    _, controller, action = path.split('/')
-    [controller || "home", action || "index"]
+    Routes.recognize(path)
   end
 
   def load_controller_class(name)
