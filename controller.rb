@@ -1,6 +1,7 @@
 require "active_record"
+require "filters"
 
-class Controller
+class ControllerBase
   attr_accessor :request, :response
 
   def process(action)
@@ -10,4 +11,8 @@ class Controller
   def params
     request.params
   end
+end
+
+class Controller < ControllerBase
+  include Filters
 end
