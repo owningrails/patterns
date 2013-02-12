@@ -1,7 +1,13 @@
 require "erb"
 
 module Rendering
+  def process(action)
+    super
+    render(action) unless @rendered
+  end
+
   def render(action)
+    @rendered = true
     response.write render_to_string(action)
   end
 
