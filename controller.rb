@@ -1,5 +1,6 @@
 require "active_record"
 require "filters"
+require "rendering"
 
 class ControllerBase
   attr_accessor :request, :response
@@ -14,5 +15,5 @@ class ControllerBase
 end
 
 class Controller < ControllerBase
-  include Filters
+  include Filters, Rendering
 end
