@@ -41,5 +41,11 @@ class UserTest < Test::Unit::TestCase
   def test_table_name
     assert_equal "users", User.table_name
   end
+
+  def test_valid
+    user = User.new
+    assert ! user.valid?
+    assert_equal ["can't be blank"], user.errors[:name]
+  end
 end
 
