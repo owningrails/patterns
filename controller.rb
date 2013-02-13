@@ -1,4 +1,4 @@
-require "active_record"
+require "not_active_record"
 require "filters"
 require "rendering"
 
