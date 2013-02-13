@@ -38,6 +38,8 @@ class TestController < Controller
 
   def index
     @out << :index
+
+    @rendered = true
   end
 end
 

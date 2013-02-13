@@ -7,7 +7,7 @@ class FrontController
     request = Rack::Request.new(env)
     response = Rack::Response.new
 
-    controller_name, action_name = route(request.path_info)
+    controller_name, action_name = Routes.recognize(request.path_info)
 
     controller_class = load_controller_class(controller_name)
     controller = controller_class.new
@@ -16,10 +16,6 @@ class FrontController
     controller.process action_name
 
     response.finish
-  end
-
-  def route(path)
-    Routes.recognize(path)
   end
 
   def load_controller_class(name)
