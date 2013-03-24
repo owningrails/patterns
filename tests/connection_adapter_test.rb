@@ -8,7 +8,7 @@ class ConnectionAdapterTest < Test::Unit::TestCase
   
   def test_execute
     row = @adapter.execute("SELECT * FROM users").first
-    assert_equal [1, "Marc"], row
+    assert_equal({ id: 1, name: "Marc", 0 => 1, 1 => "Marc" }, row)
   end
   
   def test_columns

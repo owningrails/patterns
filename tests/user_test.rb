@@ -14,25 +14,7 @@ class UserTest < Test::Unit::TestCase
     assert_equal 1, user.id
   end
 
-  def test_all
-    user = User.all.first
-    assert_equal 1, user.id
-  end
-
-  def test_map_values_to_columns
-    values = [1, "Marc"]
-    columns = [:id, :name]
-    expected_attributes = {id: 1, name: 'Marc'}
-
-    # attributes = {}
-    # columns.each_with_index do |column, i|
-    #   attributes[column] = values[i]
-    # end
-
-    attributes = User.map_values_to_columns(values)
-
-    assert_equal expected_attributes, attributes
-  end
+  ## Refactor to NotActiveRecord::Base
 
   def test_columns
     assert_equal [:id, :name], User.columns
@@ -42,10 +24,10 @@ class UserTest < Test::Unit::TestCase
     assert_equal "users", User.table_name
   end
 
-  def test_valid
-    user = User.new
-    assert ! user.valid?
-    assert_equal ["can't be blank"], user.errors[:name]
+  ###### EXERCISE ######
+  def test_all
+    user = User.all.first
+    assert_equal 1, user.id
   end
 end
 
