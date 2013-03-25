@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.summary     = 
   s.description = "The Patterns mini-framework"
   
-  s.require_paths = %w( . )
+  s.require_paths = %w( lib )
 
   s.add_runtime_dependency 'sqlite3'
 end

@@ -1,5 +1,3 @@
-# require "models/user"
-
 class UsersController < ApplicationController
   def index
     User.all.each do |user|

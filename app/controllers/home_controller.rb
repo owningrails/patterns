@@ -3,7 +3,7 @@ class HomeController < ApplicationController
 
   def index
     @message = "This is a message"
-    # render :index
+    render :index
   end
 
   def header

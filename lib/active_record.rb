@@ -1,7 +1,7 @@
 require "connection_adapter"
 require "active_model"
 
-module NotActiveRecord
+module ActiveRecord
   class Base
     include ActiveModel::Validations
 

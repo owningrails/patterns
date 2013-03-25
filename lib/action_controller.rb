@@ -1,8 +1,4 @@
-require "not_active_record"
-require "filters"
-require "rendering"
-
-module Controller
+module ActionController
   class Metal
     attr_accessor :request, :response
 

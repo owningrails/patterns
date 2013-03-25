@@ -1,6 +1,4 @@
 require File.dirname(__FILE__) + '/test_helper'
-require "not_active_record"
-require "models/user"
 
 class UserTest < Test::Unit::TestCase
   def test_initialize_with_attributes

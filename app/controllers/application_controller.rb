@@ -1,3 +1,3 @@
-class ApplicationController < Controller::Base
+class ApplicationController < ActionController::Base
   
 end

@@ -3,7 +3,7 @@ require "erb"
 module Rendering
   def process(action)
     super
-    render(action) unless @rendered
+    # render(action) unless @rendered
   end
 
   def render(action)
@@ -17,7 +17,7 @@ module Rendering
   end
 
   def template_path(action)
-    File.expand_path("../views/#{controller_name}/#{action}.erb", __FILE__)
+    File.expand_path("../../app/views/#{controller_name}/#{action}.erb", __FILE__)
   end
 
   def controller_name

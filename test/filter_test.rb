@@ -1,7 +1,6 @@
 require File.dirname(__FILE__) + '/test_helper'
-require "controller"
 
-class TestController < Controller::Base
+class TestController < ActionController::Base
   around_filter :around1
   before_filter :one
   before_filter :two

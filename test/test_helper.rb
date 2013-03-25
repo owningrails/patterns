@@ -1,3 +1,7 @@
-require "test/unit"
+Dir.chdir File.expand_path("../../", __FILE__)
+$LOAD_PATH.unshift "lib", "test"
 
-$:.unshift File.expand_path("../..", __FILE__)
+require "test/unit"
+require "rubygems"
+
+require "autoloading" rescue LoadError

@@ -1,6 +1,6 @@
-# Start with: shotgun -I.
-# Under Windows: rackup -I.  (CTRL+C and restart on each change)
+# Start with: shotgun -Ilib
+# Under Windows: rackup -Ilib  (CTRL+C and restart on each change)
 
-require "front_controller"
+require "application"
 
-run FrontController.new
+run Application.new
