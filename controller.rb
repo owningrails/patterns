@@ -2,18 +2,21 @@ require "not_active_record"
 require "filters"
 require "rendering"
 
-class ControllerBase
-  attr_accessor :request, :response
+module Controller
+  class Metal
+    attr_accessor :request, :response
 
-  def process(action)
-    send action
+    def process(action)
+      send action
+    end
+
+    def params
+      request.params
+    end
   end
 
-  def params
-    request.params
+  class Base < Metal
+    include Filters
+    include Rendering
   end
-end
-
-class Controller < ControllerBase
-  include Filters, Rendering
 end

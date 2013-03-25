@@ -1,4 +1,4 @@
-class HomeController < Controller
+class HomeController < ApplicationController
   before_filter :header
 
   def index

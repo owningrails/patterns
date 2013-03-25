@@ -1,6 +1,7 @@
-require "controller"
-require "router"
-require "routes"
+# require "autoloading"
+# require "controller"
+# require "router"
+# require "routes"
 
 class FrontController
   def call(env)
@@ -20,7 +21,7 @@ class FrontController
 
   def load_controller_class(name)
     # "home" => HomeController
-    require "controllers/#{name}_controller"
+    # require "controllers/#{name}_controller"
     Object.const_get name.capitalize + "Controller" # "HomeController"
   end
 end

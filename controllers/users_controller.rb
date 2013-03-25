@@ -1,6 +1,6 @@
-require "models/user"
+# require "models/user"
 
-class UsersController < Controller
+class UsersController < ApplicationController
   def index
     User.all.each do |user|
       response.write "<p>#{user.name}</p>"
