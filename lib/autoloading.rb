@@ -10,11 +10,10 @@ class Object
   def self.const_missing(name)
     file_name = name.to_s.underscore
 
-    ###### DEBUG
     # Prevent recursive lookup
-    # $AUTOLOADED_FILES ||= {}
-    # raise "Already loaded" if $AUTOLOADED_FILES[file_name]
-    # $AUTOLOADED_FILES[file_name] = true
+    # @looked_for_consts ||= {}
+    # super if @looked_for_consts[file_name]
+    # @looked_for_consts[file_name] = true
 
     require file_name
     const_get name
