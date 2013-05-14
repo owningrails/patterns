@@ -1,5 +1,5 @@
-# Start with: shotgun -Ilib
-# Under Windows: rackup -Ilib  (CTRL+C and restart on each change)
+# Start with: shotgun -I. -Ilib
+# Under Windows: rackup -I. -Ilib  (CTRL+C and restart on each change)
 
 class App
   def call(env)
