@@ -3,9 +3,9 @@ require "action_controller"
 require "app/controllers/application_controller"
 
 class FiltersTestController < ApplicationController
-  # around_action :around1
+  around_action :around1
   before_action :before
-  # around_action :around2
+  around_action :around2
   after_action :after
 
   def initialize(out)
@@ -46,17 +46,17 @@ class FiltersTest < Test::Unit::TestCase
     #               :index], out
     
     # With after_filter
-    assert_equal [:before,
-                  :index,
-                  :after], out
+    # assert_equal [:before,
+    #               :index,
+    #               :after], out
 
     # With around_filters
-    # assert_equal ["around1",
-    #                 :before,
-    #                 "around2",
-    #                   :index,
-    #                   :after,
-    #                 "/around2",
-    #               "/around1"], out
+    assert_equal ["around1",
+                    :before,
+                    "around2",
+                      :index,
+                      :after,
+                    "/around2",
+                  "/around1"], out
   end
 end
