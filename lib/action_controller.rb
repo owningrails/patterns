@@ -1,3 +1,5 @@
+require "active_record"
+
 module ActionController
   class Base
     attr_accessor :request, :response
