@@ -22,6 +22,10 @@ module ActiveRecord
       find_by_sql("SELECT * FROM #{table_name} WHERE id = #{id.to_i} LIMIT 1").first
     end
 
+    def self.all
+      find_by_sql("SELECT * FROM #{table_name}")
+    end
+
     def self.find_by_sql(sql)
       rows = @@connection.execute(sql) # [{:id=>1, :name=>"Marc", 0=>1, 1=>"Marc"}]
       rows.map do |attributes|
