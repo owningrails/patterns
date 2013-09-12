@@ -1,5 +1,6 @@
 require "active_record"
 require "filters"
+require "rendering"
 
 module ActionController
   class Metal
@@ -12,5 +13,6 @@ module ActionController
 
   class Base < Metal
     include Filters
+    include Rendering
   end
 end
