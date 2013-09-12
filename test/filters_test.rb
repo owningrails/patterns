@@ -3,10 +3,10 @@ require "action_controller"
 require "app/controllers/application_controller"
 
 class FiltersTestController < ApplicationController
-  # around_filter :around1
-  before_filter :before
-  # around_filter :around2
-  # after_filter :after
+  # around_action :around1
+  before_action :before
+  # around_action :around2
+  # after_action :after
 
   def initialize(out)
     @out = out
@@ -38,7 +38,7 @@ class FiltersTestController < ApplicationController
 end
 
 class FiltersTest < Test::Unit::TestCase
-  def test_filters
+  def test_actions
     out = []
     FiltersTestController.new(out).process(:index)
     
