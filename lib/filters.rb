@@ -1,21 +1,21 @@
+require "active_support/concern"
+require "active_support/callbacks"
+
 module Filters
-  def self.included(base) # base == Base
-    base.extend ClassMethods
+  extend ActiveSupport::Concern
+  include ActiveSupport::Callbacks
+
+  included do
+    define_callbacks :process
   end
 
   module ClassMethods
     def before_action(method)
-      around_action do |controller, action_proc|
-        controller.send method
-        action_proc.call
-      end
+      set_callback :process, :before, method
     end
     
     def after_action(method)
-      around_action do |controller, action_proc|
-        action_proc.call
-        controller.send method
-      end
+      set_callback :process, :after, method
     end
     
     # around_action :method
@@ -25,44 +25,14 @@ module Filters
     #
     # around_action { |controller, action_proc| action_proc.call }
     def around_action(method=nil, &block)
-      if block
-        around_actions << block
-      else
-        around_actions << proc { |controller, action_proc| controller.send method, &action_proc }
-      end
-    end
-
-    def around_actions
-      @around_actions ||= []
+      set_callback :process, :around, method, &block
     end
   end
 
   def process(action)
-    # around_action :one
-    # around_action :two
-
-    # def one
-    #   yield
-    # end
-    # def two
-    #   yield
-    # end
-
-    # proc do
-      # one do
-      #   two do
-      #     super
-      #   end
-      # end
-    # end
-
-    action_proc = proc { super }
-    self.class.around_actions.reverse.each do |filter_block|
-      current_action = action_proc
-      action_proc = proc { filter_block.call(self, current_action) }
+    run_callbacks :process do
+      super
     end
-
-    action_proc.call
   end
 end
 
