@@ -53,5 +53,9 @@ module ActiveRecord
     class << self
       attr_accessor :current_scope
     end
+
+    def self.scope(name, body)
+      define_singleton_method name, &body
+    end
   end
 end
