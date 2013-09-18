@@ -8,10 +8,15 @@ module Rendering
   def render_to_string(action)
     path = template_path(action)
     method = compile_template(path)
-    content = send(method)
+    content_for :layout, send(method)
 
     layout_method = compile_template("app/views/layouts/application.html.erb")
-    send(layout_method) { content }
+    send(layout_method) { |name = :layout| @content_for[name] }
+  end
+
+  def content_for(name, content)
+    @content_for ||= {}
+    @content_for[name] = content
   end
 
   def compile_template(path)
