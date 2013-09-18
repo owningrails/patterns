@@ -22,14 +22,14 @@ class RenderingTest < Test::Unit::TestCase
     assert_match "<p>", @controller.send(method_name)
   end
 
-  def test_render
+  def test_render_view
     assert_match "<p>", @controller.render_to_string("index")
   end
 
-  def test_render
+  def test_render_layout
     assert_match "<head>", @controller.render_to_string("index")
   end
-  
+
   def test_content_for
     assert_match "<title>Hello</title>", @controller.render_to_string("index")
   end
