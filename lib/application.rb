@@ -1,7 +1,4 @@
-require "action_controller"
-require "app/controllers/application_controller"
-require "router"
-require "config/routes"
+require "autoloading"
 
 class Application
   def call(env)
@@ -24,7 +21,6 @@ class Application
   end
 
   def load_controller_class(name)
-    require "app/controllers/#{name}_controller"
     Object.const_get name.capitalize + "Controller" # "HomeController" => HomeController
   end
 end
