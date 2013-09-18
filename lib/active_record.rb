@@ -1,5 +1,6 @@
 require "connection_adapter"
 require "active_model"
+require "relation"
 
 module ActiveRecord
   class Base
@@ -12,12 +13,16 @@ module ActiveRecord
     end
 
     def method_missing(name, *args) # args = []
-      columns = @@connection.columns(self.class.table_name)
-
-      if columns.include?(name)
-        @attributes[name]
-      else
+      if self.class.attribute_methods_generated?
         super
+      else
+        self.class.define_attribute_methods
+
+        if self.class.columns.include?(name)
+          send name
+        else
+          super
+        end
       end
     end
 
@@ -56,6 +61,27 @@ module ActiveRecord
 
     def self.scope(name, body)
       define_singleton_method name, &body
+    end
+
+    # Compile attribute methods
+
+    def self.columns
+      @@connection.columns(table_name)
+    end
+
+    def self.define_attribute_methods
+      columns.each do |column|
+        class_eval <<-RUBY
+          def #{column}
+            @attributes[:#{column}]
+          end
+        RUBY
+      end
+      @attribute_methods_generated = true
+    end
+
+    def self.attribute_methods_generated?
+      @attribute_methods_generated
     end
   end
 end
