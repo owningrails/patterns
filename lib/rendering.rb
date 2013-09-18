@@ -7,7 +7,26 @@ module Rendering
 
   def render_to_string(action)
     path = template_path(action)
-    ERB.new(File.read(path)).result(binding)
+    method = compile_template(path)
+    content = send(method)
+
+    layout_method = compile_template("app/views/layouts/application.html.erb")
+    send(layout_method) { content }
+  end
+
+  def compile_template(path)
+    method_name = path.gsub(/\W/, '_')
+
+    unless respond_to?(method_name)
+      template = ERB.new(File.read(path))
+      class_eval <<-CODE
+        def #{method_name}
+          #{template.src}
+        end
+      CODE
+    end
+
+    method_name
   end
 
   def template_path(action)
