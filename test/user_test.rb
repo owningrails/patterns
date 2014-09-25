@@ -1,6 +1,6 @@
-require File.dirname(__FILE__) + '/test_helper'
-require "app/models/user"
+require "test_helper"
+require "user"
 
-class UserTest < Test::Unit::TestCase
+class UserTest < ActiveSupport::TestCase
   
 end

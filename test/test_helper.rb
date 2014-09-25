@@ -1,4 +1,8 @@
-Dir.chdir File.expand_path("../../", __FILE__)
-$LOAD_PATH.unshift ".", "lib", "test"
+require_relative "../lib/boot"
 
-require "test/unit"
+# Load ActiveSupport testing stuff
+require 'active_support/testing/autorun'
+require 'active_support/test_case'
+
+# Remove warning from ActiveSupport
+I18n.enforce_available_locales = true

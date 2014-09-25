@@ -1,7 +1,7 @@
-require File.dirname(__FILE__) + '/test_helper'
+require "test_helper"
 require "connection_adapter"
 
-class ConnectionAdapterTest < Test::Unit::TestCase
+class ConnectionAdapterTest < ActiveSupport::TestCase
   def setup
     @adapter = SqliteAdapter.new
   end

@@ -1,9 +1,9 @@
-require File.dirname(__FILE__) + '/test_helper'
+require "test_helper"
 require "action_controller"
-require "app/controllers/application_controller"
-require "app/controllers/home_controller"
+require "application_controller"
+require "home_controller"
 
-class RenderingTest < Test::Unit::TestCase
+class RenderingTest < ActiveSupport::TestCase
   def setup
     @controller = HomeController.new
   end

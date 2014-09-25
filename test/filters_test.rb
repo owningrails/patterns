@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/test_helper'
+require "test_helper"
 require "action_controller"
 require "app/controllers/application_controller"
 
@@ -37,7 +37,7 @@ class FiltersTestController < ApplicationController
   end
 end
 
-class FiltersTest < Test::Unit::TestCase
+class FiltersTest < ActiveSupport::TestCase
   def test_filters
     out = []
     FiltersTestController.new(out).process(:index)
