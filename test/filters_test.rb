@@ -6,7 +6,7 @@ class FiltersTestController < ApplicationController
   # around_action :around1
   before_action :before
   # around_action :around2
-  # after_action :after
+  after_action :after
 
   def initialize(out)
     @out = out
@@ -46,9 +46,9 @@ class FiltersTest < ActiveSupport::TestCase
                   :index], out
     
     # With after_action
-    # assert_equal [:before,
-    #               :index,
-    #               :after], out
+    assert_equal [:before,
+                  :index,
+                  :after], out
 
     # With around_actions
     # assert_equal ["around1",
