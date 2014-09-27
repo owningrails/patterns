@@ -8,8 +8,12 @@ module ActiveRecord
       @attributes = attributes
     end
 
+    def table_name
+      self.class.table_name
+    end
+
     def method_missing(name, *args)
-      columns = @@connection.columns(self.class.table_name)
+      columns = @@connection.columns(table_name)
 
       if columns.include?(name)
         @attributes[name]
