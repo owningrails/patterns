@@ -21,4 +21,8 @@ class MysqlAdapter
   def execute(sql)
     # Here we'd implement executing the query in MySQL.
   end
+
+  def columns(to_symcoluim)
+    # TODO
+  end
 end
