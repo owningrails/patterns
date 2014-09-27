@@ -14,4 +14,12 @@ class UserTest < ActiveSupport::TestCase
     assert_kind_of User, user
     assert_equal 1, user.id
   end
+
+  def test_all
+    users = User.all
+    assert_kind_of Array, users
+    user = users.first
+    assert_kind_of User, user
+    assert_equal 1, user.id
+  end
 end
