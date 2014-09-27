@@ -32,7 +32,8 @@ module ActiveRecord
 
     def self.find_by_sql(sql)
       @@connection.execute(sql).map do |attributes|
-        new attributes
+        # User.new(attributes)
+        new(attributes)
       end
     end
 
