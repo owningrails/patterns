@@ -22,4 +22,10 @@ class UserTest < ActiveSupport::TestCase
     assert_kind_of User, user
     assert_equal 1, user.id
   end
+
+  def test_valid
+    user = User.new
+    assert ! user.valid?
+    assert_equal ["can't be blank"], user.errors[:name]
+  end
 end

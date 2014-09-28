@@ -1,7 +1,10 @@
+require "active_model"
 require "connection_adapter"
 
 module ActiveRecord
   class Base
+    include ActiveModel::Validations
+
     @@connection = SqliteAdapter.new
 
     def initialize(attributes={})

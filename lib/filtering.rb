@@ -17,6 +17,10 @@ module Filtering
     def after_action(method)
       set_callback :process, :after, method
     end
+
+    def around_action(method)
+      set_callback :process, :around, method
+    end
   end
 
   def process(action_name)
