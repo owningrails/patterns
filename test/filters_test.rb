@@ -37,7 +37,7 @@ class FiltersTestController < ApplicationController
   end
 end
 
-class FiltersTest < Test::Unit::TestCase
+class FiltersTest < ActiveSupport::TestCase
   def test_actions
     out = []
     FiltersTestController.new(out).process(:index)

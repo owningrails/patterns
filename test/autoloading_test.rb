@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/test_helper'
 require "autoloading"
 
-class AutoloadingTest < Test::Unit::TestCase
+class AutoloadingTest < ActiveSupport::TestCase
   def test_return_const
     const = Object.const_missing(:ActionController)
     assert_equal ActionController, const
