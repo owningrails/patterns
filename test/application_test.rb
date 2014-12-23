@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/test_helper'
 require "application"
 
-class ApplicationTest < Test::Unit::TestCase
+class ApplicationTest < ActiveSupport::TestCase
   def setup
     @app = Application.new
   end

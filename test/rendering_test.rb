@@ -3,7 +3,7 @@ require "action_controller"
 require "app/controllers/application_controller"
 require "app/controllers/home_controller"
 
-class RenderingTest < Test::Unit::TestCase
+class RenderingTest < ActiveSupport::TestCase
   def setup
     @controller = HomeController.new
   end
