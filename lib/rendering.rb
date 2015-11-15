@@ -1,12 +1,19 @@
 require "erb"
+# To render an ERB template:
+#
+#   ERB.new(File.read(erb_file_path)).result(binding)
 
 module Rendering
-  def template_path(action)
-    "app/views/#{controller_name}/#{action}.html.erb"
+  def render(action_or_options)
+    # TODO call render_to_string somewhere in here...
   end
 
-  def layout_path
-    "app/views/layouts/application.html.erb"
+  def render_to_string(action_or_options)
+    # TODO ...
+  end
+
+  def template_path(action)
+    "app/views/#{controller_name}/#{action}.erb"
   end
 
   def controller_name

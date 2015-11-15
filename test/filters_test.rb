@@ -1,11 +1,9 @@
 require "test_helper"
 require "action_controller"
-require "app/controllers/application_controller"
+require "application_controller"
 
 class FiltersTestController < ApplicationController
-  # around_action :around1
   before_action :before
-  # around_action :around2
   # after_action :after
 
   def initialize(out)
@@ -18,18 +16,6 @@ class FiltersTestController < ApplicationController
   
   def after
     @out << :after
-  end
-
-  def around1
-    @out << "around1"
-    yield
-    @out << "/around1"
-  end
-
-  def around2
-    @out << "around2"
-    yield
-    @out << "/around2"
   end
 
   def index
@@ -49,14 +35,5 @@ class FiltersTest < ActiveSupport::TestCase
     # assert_equal [:before,
     #               :index,
     #               :after], out
-
-    # With around_actions
-    # assert_equal ["around1",
-    #                 :before,
-    #                 "around2",
-    #                   :index,
-    #                   :after,
-    #                 "/around2",
-    #               "/around1"], out
   end
 end
