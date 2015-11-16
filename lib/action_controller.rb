@@ -1,5 +1,7 @@
+require "filters"
+
 module ActionController
-  class Base
+  class Metal
     attr_accessor :request, :response
 
     def process(action)
@@ -15,5 +17,10 @@ module ActionController
     def params
       request.params
     end
+  end
+
+  # class Child < Parent
+  class Base < Metal
+    include Filters
   end
 end
