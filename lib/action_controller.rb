@@ -7,5 +7,13 @@ module ActionController
       # `send "index"` same as `index`
       send action # calls index
     end
+
+    def render(options)
+      response.write options[:text]
+    end
+
+    def params
+      request.params
+    end
   end
 end
