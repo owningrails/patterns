@@ -4,7 +4,7 @@ require "application_controller"
 
 class FiltersTestController < ApplicationController
   before_action :before
-  # after_action :after
+  after_action :after
 
   def initialize(out)
     @out = out
@@ -28,12 +28,12 @@ class FiltersTest < ActiveSupport::TestCase
     out = []
     FiltersTestController.new(out).process(:index)
     
-    assert_equal [:before,
-                  :index], out
+    # assert_equal [:before,
+    #               :index], out
     
     # With after_action
-    # assert_equal [:before,
-    #               :index,
-    #               :after], out
+    assert_equal [:before,
+                  :index,
+                  :after], out
   end
 end
