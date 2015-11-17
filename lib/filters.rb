@@ -1,9 +1,9 @@
-module Filters
-  def self.included(base) # base == Base
-    base.extend ClassMethods
-  end
+require 'active_support/concern'
 
-  module ClassMethods
+module Filters
+  extend ActiveSupport::Concern
+
+  class_methods do
     def before_action(method)
       before_actions << method
     end
