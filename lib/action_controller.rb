@@ -1,4 +1,5 @@
 require "filters"
+require "rendering"
 
 module ActionController
   class Metal
@@ -10,10 +11,6 @@ module ActionController
       send action # calls index
     end
 
-    def render(options)
-      response.write options[:text]
-    end
-
     def params
       request.params
     end
@@ -22,5 +19,6 @@ module ActionController
   # class Child < Parent
   class Base < Metal
     include Filters
+    include Rendering
   end
 end
